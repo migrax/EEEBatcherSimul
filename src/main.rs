@@ -15,31 +15,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-extern crate eee_hyst;
-extern crate structopt;
-#[macro_use]
-extern crate structopt_derive;
+use structopt;
 
+use eee_hyst::switch::Packet;
+use eee_hyst::{simulator, Time};
 use std::io;
 use std::io::BufRead;
 use structopt::StructOpt;
-use eee_hyst::{simulator, Time};
-use eee_hyst::switch::Packet;
-
 
 #[derive(StructOpt, Debug)]
 #[structopt(name = "Packet buncher", about = "Creates batches of Ethernet frames.")]
 struct Opt {
-    #[structopt(short = "c", long = "capacity", help = "Sets the output link capacity in Gb/s",
-                default_value = "10")]
+    #[structopt(
+        short = "c",
+        long = "capacity",
+        help = "Sets the output link capacity in Gb/s",
+        default_value = "10"
+    )]
     capacity: u32,
 
-    #[structopt(short = "d", long = "delay",
-                help = "Delay for the first packet in the burst in ns.", default_value = "0")]
+    #[structopt(
+        short = "d",
+        long = "delay",
+        help = "Delay for the first packet in the burst in ns.",
+        default_value = "0"
+    )]
     delay: u32,
 }
 
-struct PacketsFromRead<'a, R: 'a + BufRead + ?Sized> {
+struct PacketsFromRead<'a, R: BufRead + ?Sized> {
     is: &'a mut R,
 }
 
@@ -63,14 +67,12 @@ impl<'a, R: BufRead + ?Sized> Iterator for PacketsFromRead<'a, R> {
                 match values.len() {
                     0 => None, // Just an empty line
                     2 => Some(Packet::new(
-                        Time::from_secs(
-                            values[0]
-                                .parse()
-                                .expect(&format!("{} is not a valid arrival time.", values[0])),
-                        ),
+                        Time::from_secs(values[0].parse().unwrap_or_else(|_| {
+                            panic!("{} is not a valid arrival time.", values[0])
+                        })),
                         values[1]
                             .parse()
-                            .expect(&format!("{} is not a valid size.", values[1])),
+                            .unwrap_or_else(|_| panic!("{} is not a valid size.", values[1])),
                     )),
                     _ => {
                         eprintln!("Malformed line \"{}\"", line);
@@ -82,7 +84,6 @@ impl<'a, R: BufRead + ?Sized> Iterator for PacketsFromRead<'a, R> {
     }
 }
 
-
 fn main() {
     let opt = Opt::from_args();
 
@@ -92,11 +93,11 @@ fn main() {
 
     let simul = simulator::Simulator::new_explicit(
         Time(0),
-        Time(opt.delay as u64),
+        Time(u64::from(opt.delay)),
         input_packets,
         Time(0),
         Time(0),
-        1e9 * opt.capacity as f64,
+        1e9 * f64::from(opt.capacity),
     );
 
     for event in simul {
