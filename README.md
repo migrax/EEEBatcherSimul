@@ -1,17 +1,17 @@
 HystEEE
 =======
 
-[![Build Status](https://travis-ci.org/migrax/EEEBuncherSimul.svg?branch=master)](https://travis-ci.org/migrax/EEEBuncherSimul)
+[![Build Status](https://travis-ci.org/migrax/EEEBatcherSimul.svg?branch=master)](https://travis-ci.org/migrax/EEEBatcherSimul)
 
-A Simulator the Buncher Algorithm for Actual EEE Interfaces 
+A Simulator the Batcher Algorithm for Actual EEE Interfaces 
 
 ## Overview
 
-This is an implementation of the buncher algorithm designed for taking advantage of the
+This is an implementation of the batcher algorithm designed for taking advantage of the
 usual configuration parameters of EEE selected by comercial vendors.
 
 ## USAGE:
-    buncher [OPTIONS]
+    batcher [OPTIONS]
 
 ### FLAGS:
         --help       Prints help information
@@ -23,6 +23,6 @@ usual configuration parameters of EEE selected by comercial vendors.
 
 ## Legal
 
-Copyright ⓒ 2018 Miguel Rodríguez Pérez <miguel@det.uvigo.gal>.
+Copyright ⓒ 2018–2019 Miguel Rodríguez Pérez <miguel@det.uvigo.gal>.
 
 This simulator is licensed under the GNU General Public License, version 3 (GPL-3.0). For information see LICENSE
