@@ -24,7 +24,7 @@ use std::io::BufRead;
 use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
-#[structopt(name = "Packet buncher", about = "Creates batches of Ethernet frames.")]
+#[structopt(name = "Packet buncher", about = "Creates bunches of Ethernet frames.")]
 struct Opt {
     #[structopt(
         short = "c",

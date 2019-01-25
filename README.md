@@ -1,9 +1,9 @@
-EEEBatcherSimul
+EEEBuncherSimul
 =======
 
-[![Build Status](https://travis-ci.org/migrax/EEEBatcherSimul.svg?branch=master)](https://travis-ci.org/migrax/EEEBatcherSimul)
+[![Build Status](https://travis-ci.org/migrax/EEEBuncherSimul.svg?branch=master)](https://travis-ci.org/migrax/EEEBuncherSimul)
 
-A Simulator the Batcher Algorithm for Actual EEE Interfaces 
+A Simulator the Buncher Algorithm for Actual EEE Interfaces 
 
 ## Overview
 
