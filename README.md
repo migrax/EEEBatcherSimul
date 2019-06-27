@@ -3,7 +3,7 @@ EEEBuncherSimul
 
 [![Build Status](https://travis-ci.org/migrax/EEEBuncherSimul.svg?branch=master)](https://travis-ci.org/migrax/EEEBuncherSimul)
 
-A Simulator of Buncher Algorithm for Actual EEE Interfaces 
+A Simulator of the Buncher Algorithm for Actual EEE Interfaces 
 
 ## Overview
 
