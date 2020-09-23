@@ -6,7 +6,7 @@ edition = "2018"
 
 [dependencies]
 structopt = "0.3"
-structopt-derive = "0.2"
+structopt-derive = "0.4"
 
 [dependencies.eee-hyst]
 git = "https://github.com/migrax/HystEEE.git"
